@@ -1,7 +1,7 @@
 module.exports = {
-  googleClientID: GOOGLE_CLIENT_ID,
-  googleClientSecret: GOOGLE_CLIENT_SECRET,
-  mongoURI: CI_MONGO_URI,
-  cookieKey: COOKIE_KEY,
-  redisUrl: REDIS_URL,
+  googleClientID: process.env.GOOGLE_CLIENT_ID,
+  googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  mongoURI: process.env.CI_MONGO_URI,
+  cookieKey: process.env.COOKIE_KEY,
+  redisUrl: process.env.REDIS_URL,
 };
