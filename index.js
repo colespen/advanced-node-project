@@ -4,7 +4,7 @@ const cookieSession = require("cookie-session");
 const passport = require("passport");
 const bodyParser = require("body-parser");
 
-require('dotenv').config();
+require("dotenv").config();
 const keys = require("./config/keys");
 
 require("./models/User");
@@ -32,6 +32,7 @@ app.use(passport.session());
 
 require("./routes/authRoutes")(app);
 require("./routes/blogRoutes")(app);
+require("./routes/uploadRoutes")(app);
 
 if (["production", "ci"].includes(process.env.NODE_ENV)) {
   app.use(express.static("client/build"));
