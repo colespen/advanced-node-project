@@ -16,7 +16,7 @@ class BlogShow extends Component {
             "https://node-blog-course.s3.us-east-2.amazonaws.com/" +
             this.props.blog.imageUrl
           }
-          alt="blog image"
+          alt="blog attached picture"
         />
       );
     }
