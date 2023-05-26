@@ -15,22 +15,23 @@ export const handleToken = (token) => async (dispatch) => {
 
 export const submitBlog = (values, file, history) => async (dispatch) => {
   let uploadConfig = {};
-  if (file) {
+  if (file !== null) {
     uploadConfig = await axios.get("/api/upload", {
       params: {
         type: file.type,
       },
     });
   }
+  const isUploadConfig = Object.keys(uploadConfig).length !== 0;
   // make PUT request to the AWS signed url
-  if (uploadConfig.data.url) {
+  if (isUploadConfig && file !== null) {
     await axios.put(uploadConfig.data.url, file, {
       headers: { "Content-Type": file.type },
     });
   }
   const res = await axios.post("/api/blogs", {
     ...values,
-    imageUrl: uploadConfig.data.key,
+    imageUrl: isUploadConfig ? uploadConfig.data.key : null,
   });
   history.push("/blogs");
   dispatch({ type: FETCH_BLOG, payload: res.data });
